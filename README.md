@@ -33,7 +33,7 @@ FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 6 LINES
 (ID, STAFF_NM, DEP_NM, GENDER, @BIRTH_DT, EMP_FLAG)
-set BIRTH_DT = STR_TO_DATE(@datevar,'%Y-%m-%d');
+set BIRTH_DT = STR_TO_DATE(@BIRTH_DT,'%Y-%m-%d');
 ```
 
 ![image](https://user-images.githubusercontent.com/68543150/129373105-c5316c22-65ba-48b6-9989-31614bf58855.png)
