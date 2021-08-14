@@ -36,3 +36,9 @@ SELECT emp_flag, gender, staff_nm, dep_nm FROM clerk ORDER BY 1, 2, 3, 4;
 
 # 열 이름 지정 방식은 SELECT 목록에 선택되지 않은 열로 정렬 가능
 # 열 위치 지정 방식은 SELECT 목록에 선택되지 않은 열로 정렬 불가
+
+# 생년월일 기준 내림차순 정렬, 생년월일 이름 및 부서명 출력
+SELECT birth_dt, staff_nm, dep_nm FROM clerk ORDER BY birth_dt DESC;
+
+# 재직 여부 기준 내림차순 정렬, 성별 기준 오름차순 정렬, 재직 여부, 성별 및 이름 출력
+SELECT emp_flag, gender, staff_nm FROM clerk ORDER BY emp_flag DESC, gender ASC;
