@@ -19,12 +19,16 @@ EMP_FLAG VARCHAR(1)
 
 
 ## xlsx 파일을 db에 넣기
+- 먼저 csv 파일로 변경
+
 ```mysql 
-show global variables like 'local_infile'
+show global variables like 'local_infile;
 ```
 off 인 경우
 ```mysql
-mysql --local_infile=1 -u root -ppassword DB_name
+set global local_infile=true;
+
+mysql --local_infile=1 -u root -ppassword DB_name;
 ```
 
 ```mysql
@@ -37,4 +41,3 @@ set BIRTH_DT = STR_TO_DATE(@BIRTH_DT,'%Y-%m-%d');
 ```
 
 ![image](https://user-images.githubusercontent.com/68543150/129373105-c5316c22-65ba-48b6-9989-31614bf58855.png)
-
