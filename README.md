@@ -16,6 +16,9 @@
 - [9. 데이터의 그룹화, 필터링](#9-데이터의-그룹화-필터링)
   - [데이터의 그룹화](#데이터의-그룹화)
   - [그룹화된 데이터의 필터링](#그룹화된-데이터의-필터링)
+- [10.테이블 합치기](#10테이블-합치기)
+  - [내부 조인](#내부-조인)
+  - [외부 조인](#외부-조인)
 
 ## table 생성 예제
 - CLERK 테이블
@@ -196,3 +199,34 @@ WHERE 조건절
 GROUP BY 열 이름1
 HAVING 집계 함수 조건;
 ```
+
+# 10.테이블 합치기
+## 내부 조인
+- FROM/WHERE를 사용
+```mysql
+SELECT 테이블명1.열 이름1, 테이블명2.열 이름2
+FROM 테이블명1, 테이블명2
+WHERE 테이블명1.KEY = 테이블명2.KEY
+```
+- FROM/WHERE와 별칭을 사용
+```mysql
+SELECT 별칭1.열 이름1, 별칭2.열 이름2
+FROM 테이블명1 AS 별칭1, 테이블명2 AS 별칭2
+WHERE 테이블명1.KEY = 테이블명2.KEY
+```
+- INNER JOIN을 사용
+```mysql
+SELECT 테이블명1.열 이름1, 테이블명2.열 이름2
+FROM 테이블명1 INNER JOIN 테이블명2
+ON 테이블명1.KEY = 테이블명2.KEY
+```
+- INNER JOIN과 별칭을 사용
+```mysql
+SELECT 별칭1.열 이름1, 별칭2.열 이름2
+FROM 테이블명1 AS 별칭1 INNER JOIN 테이블명2 AS 별칭2
+ON 별칭1.KEY = 별칭2.KEY
+```
+## 외부 조인
+- LEFT OUTER JOIN 
+- RIGHT OUTER JOIN
+- FULL OUTER JOIN
