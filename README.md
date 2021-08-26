@@ -19,6 +19,8 @@
 - [10.테이블 합치기](#10테이블-합치기)
   - [내부 조인](#내부-조인)
   - [외부 조인](#외부-조인)
+- [행 합치기](#행-합치기)
+  - [UNION 연산자](#union-연산자)
 
 ## table 생성 예제
 - CLERK 테이블
@@ -228,5 +230,30 @@ ON 별칭1.KEY = 별칭2.KEY
 ```
 ## 외부 조인
 - LEFT OUTER JOIN 
+```mysql
+SELECT 별칭1.열 이름1, 별칭2.열 이름2
+FROM 테이블명 (AS) 별칭 1 LEFT (OUTER) JOIN 테이블명2 (AS) 별칭2
+ON 별칭1.KEY = 별칭2.KEY;
+```
 - RIGHT OUTER JOIN
+```mysql
+SELECT 별칭1.열 이름1, 별칭2.열 이름2
+FROM 테이블명1 (AS) 별칭1 RIGHT (OUTER) JOINT 테이블명2 (AS) 별칭2
+ON 별칭1.KEY = 별칭2.KEY;
+```
 - FULL OUTER JOIN
+```mysql
+SELECT 별칭1.열 이름1, 별칭2.열 이름2
+FROM 테이블명1 (AS) 별칭1 FULL (OUTER) JOIN 테이블명2 (AS) 별칭2
+ON 별칭1.KEY = 별칭2.KEY;
+```
+
+# 행 합치기
+## UNION 연산자
+- UNION 연산자 사용
+```mysql
+SELECT 열 이름1, 열 이름2 FROM 테이블명1 WHERE 조건절
+UNION
+SELECT 열 이름1, 열 이름2 FROM 테이블명2 WHERE 조건절
+ORDER BY 1;
+```
