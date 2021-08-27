@@ -21,6 +21,7 @@
   - [외부 조인](#외부-조인)
 - [행 합치기](#행-합치기)
   - [UNION 연산자](#union-연산자)
+  - [UNION ALL 연산자](#union-all-연산자)
 
 ## table 생성 예제
 - CLERK 테이블
@@ -257,3 +258,14 @@ UNION
 SELECT 열 이름1, 열 이름2 FROM 테이블명2 WHERE 조건절
 ORDER BY 1;
 ```
+
+## UNION ALL 연산자
+- UNION ALL 연산자 사용
+```mysql
+SELECT 열 이름1, 열 이름2 FROM 테이블명1 WHERE 조건절
+UNION ALL 
+SELECT 열 이름1, 열 이름2 FROM 테이블명2 WHERE 조건절
+ORDER BY 1;
+```
+
+

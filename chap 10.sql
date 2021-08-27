@@ -1,0 +1,27 @@
+# CUST_PARTY: 고객정보 테이블
+# RCPT_ACCT: 고객수신원장 테이블
+# 현재 살아있는 계좌를 가지고 있는 고객들 및 휴대폰번호
+# 살아있는 계좌 개수를 기준으로 오름차 순 정렬
+
+SELECT TMP1.SSN, TMP1.MOBILE_NO, TMP2.CNT
+FROM CUST_PARTY AS TMP1
+LEFT OUTER JOIN
+(SELECT SSN, COUNT(*) AS CNT FROM RCPT_ACCT WHERE CNCL_DT IS NULL GROUP BY 1) AS TMP2
+ON TMP1.SSN = TMP2.SSN
+WHERE CNT >= 1
+ORDER BY 3;
+
+# 현재 살아있는 계좌 수가 두 개 이상이고, 모든 수신잔액의 총합이 50만원 이상인 고객
+# 주민등록번호, 이름, 휴대폰번호, 계좌 수, 수신잔액 총합
+# 주민등록번호 기준 오름차 순
+
+SELECT TMP1.SSN, TMP1.PARTY_NM, TMP1.MOBILE_NO, TMP2.CNT, TMP2.RCPT_AMT
+FROM CUST_PARTY AS TMP1
+LEFT OUTER JOIN
+    (SELECT SSN, COUNT(*) AS CNT, SUM(RCPT_AMT) AS RCPT_AMT
+     FROM RCPT_ACCT
+     WHERE CNCL_DT IS NULL
+     GROUP BY 1) AS TMP2
+     ON TMP1.SSN = TMP2.SSN
+WHERE RCPT_AMT >= 500000 AND CNT >= 2
+ORDER BY 1;
