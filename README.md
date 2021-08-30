@@ -22,6 +22,9 @@
 - [행 합치기](#행-합치기)
   - [UNION 연산자](#union-연산자)
   - [UNION ALL 연산자](#union-all-연산자)
+- [11. 하위 쿼리](#11-하위-쿼리)
+  - [FROM 절의 하위 쿼리](#from-절의-하위-쿼리)
+  - [WHERE 조건절의 하위 쿼리](#where-조건절의-하위-쿼리)
 
 ## table 생성 예제
 - CLERK 테이블
@@ -268,4 +271,34 @@ SELECT 열 이름1, 열 이름2 FROM 테이블명2 WHERE 조건절
 ORDER BY 1;
 ```
 
+# 11. 하위 쿼리
+- SQL 문장에 속하는 또 다른 SQL 문장
+- 한 번의 질의로 해결 가능
+- 하위 쿼리 작성 후 테이블 별칭을 꼭 주어야 함
+## FROM 절의 하위 쿼리
+- 조건에 맞는 대상자 선정 후 요약할 때
+```mysql
+SELECT 열 이름1, 열 이름2
+FROM (SELECT *
+      FROM 테이블명
+      WHERE 조건절) (AS) 별칭
+WHERE 조건절;
+```
 
+-  테이블 조인을 할 때
+```mysql
+SELECT 별칭1.열 이름1, 별칭2.열 이름2
+FROM 테이블명1 (AS) 별칭1 LEFT OUTER JOIN
+(SELECT 열 이름1, 열 이름2
+ FROM 테이블명2
+ WHERE 조건절) (AS) 별칭2
+ON 별칭1.KEY = 별칭2.KEY
+```
+
+## WHERE 조건절의 하위 쿼리
+- IN을 사용한 WHERE 조건절의 하위 쿼리
+```MYSQL
+SELECT 열 이름1, 열 이름2
+FROM 테이블명1
+WHERE 열 이름 IN (SELECT 열 이름 FROM 테이블명2 WHERE 조건절);
+```
